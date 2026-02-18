@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Tile Placer</title>
+  <style>
+    body { 
+      margin: 0; 
+      font-family: sans-serif;
+    }
+
+    #toolbar {
+      background: #222;
+      padding: 10px;
+    }
+
+    #toolbar button {
+      margin-right: 10px;
+      padding: 6px 12px;
+      font-size: 14px;
+      cursor: pointer;
+    }
+
+    #container {
+      display: flex;
+    }
+
+    #mapWrapper {
+      position: relative;
+    }
+
+    #map, #grid {
+      position: absolute;
+      top: 0;
+      left: 0;
+    }
+
+    #grid {
+      pointer-events: none;
+    }
+
+
+    #tileset {
+      border-right: 2px solid #333;
+    }
+
+    canvas {
+      image-rendering: pixelated;
+    }
+  </style>
+</head>
+<body>
+  <div id="toolbar">
+    <button id="exportBtn">Export Map</button>
+    <button id="clearBtn">Clear Map</button>
+    <button id="eraserBtn">Eraser</button>
+    <button id="print">Print</button>
+    <input type="number" id="columns" name="Columns" value="25">
+    <input type="number" id="rows" name="Rows" value="20">
+
+  </div>
+
+  <div id="container">
+    <canvas id="tileset"></canvas>
+
+    <div id="mapWrapper">
+      <canvas id="map"></canvas>
+      <canvas id="grid"></canvas>
+    </div>
+  </div>
+
+
+  <script src="renderer.js"></script>
+</body>
+</html>
