@@ -220,18 +220,28 @@ function drawGrid() {
 }
 
 function updateGridSize() {
-  MAP_COLS = parseInt(columns.value, 10);
-  MAP_ROWS = parseInt(rows.value, 10);
+  const newCols = parseInt(columns.value, 10);
+  const newRows = parseInt(rows.value, 10);
+
+  const newMapData = Array.from({ length: newRows }, (_, row) =>
+    Array.from({ length: newCols }, (_, col) => {
+      // If old data exists, keep it
+      if (row < MAP_ROWS && col < MAP_COLS) {
+        return mapData[row][col];
+      }
+      return 0;
+    })
+  );
+
+  MAP_COLS = newCols;
+  MAP_ROWS = newRows;
+  mapData = newMapData;
 
   mapCanvas.width = MAP_COLS * TILE_SIZE;
   mapCanvas.height = MAP_ROWS * TILE_SIZE;
 
   gridCanvas.width = MAP_COLS * TILE_SIZE;
   gridCanvas.height = MAP_ROWS * TILE_SIZE;
-
-  mapData = Array.from({ length: MAP_ROWS }, () =>
-    Array.from({ length: MAP_COLS }, () => 0)
-  );
 
   drawMap();
 }
