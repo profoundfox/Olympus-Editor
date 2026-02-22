@@ -2,18 +2,14 @@ const exportBtn = document.getElementById("exportBtn");
 const clearBtn = document.getElementById("clearBtn");
 const eraserBtn = document.getElementById("eraserBtn");
 const fillBtn = document.getElementById("fillBtn");
-const printBtn = document.getElementById("print");
 
-let columns = document.getElementById("columns");
-let rows = document.getElementById("rows");
-
-columns.addEventListener("input", updateGridSize);
-rows.addEventListener("input", updateGridSize);
+const colBtn = document.getElementById("addColumnBtn");
+const rowBtn = document.getElementById("addRowBtn");
 
 const TILE_SIZE = 16;
 
-let MAP_COLS = parseInt(columns.value, 10);
-let MAP_ROWS = parseInt(rows.value, 10);
+let MAP_COLS = 20;
+let MAP_ROWS = 20;
 
 const tilesetCanvas = document.getElementById("tileset");
 const mapCanvas = document.getElementById("map");
@@ -360,9 +356,9 @@ function resizeCanvases() {
   gridCanvas.height = MAP_ROWS * TILE_SIZE;
 }
 
-function updateGridSize() {
-  const newCols = parseInt(columns.value, 10);
-  const newRows = parseInt(rows.value, 10);
+function updateGridSize(col, row) {
+  const newCols = parseInt(col, 10);
+  const newRows = parseInt(row, 10);
 
   const newMapData = Array.from({ length: newRows }, (_, row) =>
     Array.from({ length: newCols }, (_, col) =>
@@ -418,7 +414,14 @@ fillBtn.addEventListener("click", () => {
     currentTool === Tools.FILL ? "Fill (ON)" : "Fill";
 });
 
-printBtn.addEventListener("click", () => {
-  console.log("Columns:", MAP_COLS);
-  console.log("Rows:", MAP_ROWS);
+colBtn.addEventListener("click", () => {
+  const newCols = MAP_COLS + 1;
+  columns.value = newCols;
+  updateGridSize(newCols, MAP_ROWS);
+});
+
+rowBtn.addEventListener("click", () => {
+  const newRows = MAP_ROWS + 1;
+  rows.value = newRows;
+  updateGridSize(MAP_COLS, newRows);
 });

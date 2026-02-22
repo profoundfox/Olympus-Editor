@@ -21,8 +21,7 @@
       border-bottom: 4px solid #000;
     }
 
-    button, 
-    input[type="number"] {
+    button{
       font-family: 'Pixelify Sans', sans-serif;
       display: inline-block;
       position: relative;
@@ -43,12 +42,6 @@
         inset -4px -4px 0 0 rgba(0,0,0,0.2);
       
       outline: none;
-    }
-
-    input[type="number"] {
-      background: #444;
-      width: 60px;
-      cursor: text;
     }
 
     button:hover {
@@ -108,12 +101,6 @@
     <button id="clearBtn">Clear Map</button>
     <button id="eraserBtn">Eraser</button>
     <button id="fillBtn">Fill</button>
-    <button id="print">Print</button>
-    
-    <div style="display:inline-block; color: #aaa; font-size: 8px;">
-      R: <input type="number" id="rows" value="20">
-      C: <input type="number" id="columns" value="25">
-    </div>
   </div>
 
   <div id="container">
