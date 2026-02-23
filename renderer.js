@@ -341,6 +341,7 @@ function drawTilesetHighlight(x, y) {
 
   tCtx.strokeStyle = "red";
   tCtx.lineWidth = 2;
+  
   tCtx.strokeRect(
     x * TILE_SIZE,
     y * TILE_SIZE,
@@ -350,10 +351,25 @@ function drawTilesetHighlight(x, y) {
 }
 
 function resizeCanvases() {
-  mapCanvas.width = MAP_COLS * TILE_SIZE;
-  mapCanvas.height = MAP_ROWS * TILE_SIZE;
-  gridCanvas.width = MAP_COLS * TILE_SIZE;
-  gridCanvas.height = MAP_ROWS * TILE_SIZE;
+  const width = MAP_COLS * TILE_SIZE;
+  const height = MAP_ROWS * TILE_SIZE;
+
+  mapCanvas.width = width;
+  mapCanvas.height = height;
+  gridCanvas.width = width;
+  gridCanvas.height = height;
+
+  const wrapper = document.getElementById("mapWrapper");
+
+  const colBtn = document.getElementById("addColumnBtn");
+  const rowBtn = document.getElementById("addRowBtn");
+
+  finalWidth = width + "px";
+  finalHeight = height + "px"
+
+  wrapper.style.width = finalWidth;
+  wrapper.style.height = finalHeight;
+  
 }
 
 function updateGridSize(col, row) {
@@ -416,12 +432,10 @@ fillBtn.addEventListener("click", () => {
 
 colBtn.addEventListener("click", () => {
   const newCols = MAP_COLS + 1;
-  columns.value = newCols;
   updateGridSize(newCols, MAP_ROWS);
 });
 
 rowBtn.addEventListener("click", () => {
   const newRows = MAP_ROWS + 1;
-  rows.value = newRows;
   updateGridSize(MAP_COLS, newRows);
 });
